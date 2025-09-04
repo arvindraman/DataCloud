@@ -1,3 +1,4 @@
+-- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
 
 -- CTE to create list of Employees	
 WITH RECURSIVE Employees(EmployeeID, FirstName, LastName, Title, ManagerId, Email) AS (
@@ -19,10 +20,14 @@ VALUES
 ),
 
 -- CREATE RECURSIVE CTE 
-employee_recursive(distance,EmployeeId, ManagerId ) AS (
-  SELECT 1,  e.EmployeeId as EmployeeId, e.ManagerId as ManagerId  
-	FROM Employees e
-  UNION ALL
-    SELECT er.distance +1, e2.EmployeeId, e2.ManagerId 
-	FROM employee_recursive er,Employees e2
+employee_recursive(distance,EmployeeId, ManagerId,EmployeeName, Title,ReportingHierarchy,ManagerHierarchy) AS (
+  	SELECT 1,  e.EmployeeId as EmployeeId, e.ManagerId as ManagerId , CONCAT(e.FirstName,' ', e.LastName) as EmployeeName, e.Title, e.Title as ReportingHierarchy, CONCAT(e.FirstName,' ', e.LastName) as ManagerHierarchy
+		FROM Employees e where ManagerId = 0
+  		UNION ALL
+    SELECT er.distance +1, e2.EmployeeId, e2.ManagerId, CONCAT(e2.FirstName,' ', e2.LastName), e2.Title, CONCAT(e2.Title, ' -> ', er.ReportingHierarchy), CONCAT(e2.FirstName,' ', e2.LastName, ' -> ', er.ManagerHierarchy)
+		FROM employee_recursive er,Employees e2
     WHERE er.EmployeeId = e2.ManagerId
+  
+)
+
+select  EmployeeName, Title,ManagerHierarchy, ReportingHierarchy,distance, EmployeeId, ManagerId from employee_recursive ;
