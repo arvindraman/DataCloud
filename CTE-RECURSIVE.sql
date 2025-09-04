@@ -1,7 +1,6 @@
--- This query may not work if your Org is NOT using the Hyper Query API
 
 -- CTE to create list of Employees	
-WITH Employees(EmployeeID, FirstName, LastName, Title, ManagerId, Email) AS (
+WITH RECURSIVE Employees(EmployeeID, FirstName, LastName, Title, ManagerId, Email) AS (
 VALUES
 (1001, 'Alice',   'Johnson',   'CEO',                 0,   'alice.johnson@example.com'),
 (1002, 'Bob',     'Smith',     'CTO',                  1001,   'bob.smith@example.com'),
@@ -20,14 +19,10 @@ VALUES
 ),
 
 -- CREATE RECURSIVE CTE 
-RECURSIVE employee_recursive(distance,EmployeeId, ManagerId ) AS (
+employee_recursive(distance,EmployeeId, ManagerId ) AS (
   SELECT 1,  e.EmployeeId as EmployeeId, e.ManagerId as ManagerId  
 	FROM Employees e
   UNION ALL
     SELECT er.distance +1, e2.EmployeeId, e2.ManagerId 
 	FROM employee_recursive er,Employees e2
     WHERE er.EmployeeId = e2.ManagerId
-  
-)
--- select EmployeeId, ManagerId from Employees;
-select  distance, EmployeeId, ManagerId from employee_recursive ;
