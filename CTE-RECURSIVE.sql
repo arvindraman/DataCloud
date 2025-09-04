@@ -1,4 +1,5 @@
 -- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
+-- It instantiates a sample Employee table and then recursively parses it to display the Manager and Reporting Hierarchy along with the distance from the CEO
 
 -- CTE to create list of Employees	
 WITH RECURSIVE Employees(EmployeeID, FirstName, LastName, Title, ManagerId, Email) AS (
@@ -30,4 +31,5 @@ employee_recursive(distance,EmployeeId, ManagerId,EmployeeName, Title,ReportingH
   
 )
 
+-- Show the Employee Name & Title along with the Manager and Reporting Hierarchy and the distance from the CEO
 select  EmployeeName, Title,ManagerHierarchy, ReportingHierarchy,distance, EmployeeId, ManagerId from employee_recursive ;
