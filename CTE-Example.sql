@@ -1,4 +1,4 @@
--- This query can be run direclty in Data Cloud Query Editor as it uses CTEs to initiatize the data 
+-- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
 
 -- CTE to create list of Employees	
 WITH Employees(EmployeeID, FirstName, LastName, Title, ManagerId, Email) AS (
