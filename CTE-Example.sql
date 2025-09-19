@@ -1,3 +1,6 @@
+-- Sample Query that shows how to use CTE within Data Cloud Queries
+-- https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/common-table-expressions.html
+
 -- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
 
 -- CTE to create list of Employees	
