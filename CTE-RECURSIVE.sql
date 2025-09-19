@@ -1,3 +1,6 @@
+-- Sample query that shows how to use Recursive CTE within Data Cloud
+-- https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/select-with.html
+
 -- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
 -- It instantiates a sample Employee table and then recursively parses it to display the Manager and Reporting Hierarchy along with the distance from the CEO
 
