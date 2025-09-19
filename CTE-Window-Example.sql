@@ -1,3 +1,6 @@
+-- Sample Query that shows how to use Window Functions within Data Cloud Queries
+-- https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/window.html
+
 -- This query can be run directly in Data Cloud Query Editor as it uses CTEs to initiatize the data 
 
 -- CTE to create list of Loan Assignments to Banker
